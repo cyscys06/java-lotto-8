@@ -9,4 +9,7 @@ public class OutputView {
         System.out.println(Message.REQUEST_WINNINGNUMBERS.getMessage());
     }
 
+    public void requestBonusNumber() {
+        System.out.println(Message.REQUEST_BONUSNUMBER.getMessage());
+    }
 }
