@@ -26,4 +26,8 @@ public class WinningNumbers {
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getNumbers();
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }
