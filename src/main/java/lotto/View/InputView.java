@@ -6,4 +6,10 @@ public class InputView {
     public String getInput() {
         return Console.readLine();
     }
+
+    public void validateInputEmpty(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTYINPUT.getErrorMessage());
+        }
+    }
 }
