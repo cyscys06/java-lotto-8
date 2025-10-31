@@ -19,4 +19,10 @@ public class PurchaseLotto {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE.getErrorMessage());
         }
     }
+
+    public void validate_NotUnit(int purchaseMoney) {
+        if (purchaseMoney % UNIT != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOTUNIT.getErrorMessage());
+        }
+    }
 }
