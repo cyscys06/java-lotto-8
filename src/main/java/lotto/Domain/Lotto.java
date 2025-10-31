@@ -5,9 +5,6 @@ import lotto.View.ErrorMessage;
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTONUMBER_MIN = 1;
-    private static final int LOTTONUMBER_MAX = 45;
-    private static final int LOTTONUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,14 +13,15 @@ public class Lotto {
     }
 
     private void validateLotto_NumberCount(List<Integer> numbers) {
-        if (numbers.size() != LOTTONUMBER_COUNT) {
+        if (numbers.size() != LottoInfo.LOTTONUMBER_COUNT.getInfo()) {
             throw new IllegalArgumentException(ErrorMessage.NOTPROPERCOUNT.getErrorMessage());
         }
     }
 
     private void validateLotto_NumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number > LOTTONUMBER_MAX || number < LOTTONUMBER_MIN) {
+            if (number > LottoInfo.LOTTONUMBER_MAX.getInfo() ||
+                    number < LottoInfo.LOTTONUMBER_MIN.getInfo()) {
                 throw new IllegalArgumentException(ErrorMessage.NOTINRANGE.getErrorMessage());
             }
         }
