@@ -12,4 +12,12 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.EMPTYINPUT.getErrorMessage());
         }
     }
+
+    public void validateInputisNotNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NOTNUMBER.getErrorMessage());
+        }
+    }
 }
