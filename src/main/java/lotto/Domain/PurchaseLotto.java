@@ -10,8 +10,15 @@ public class PurchaseLotto {
     private final List<Lotto> LottoList;
     private int purchaseAmount;
 
-    PurchaseLotto() {
+    PurchaseLotto(int purchaseMoney) {
+        validatePurchaseMoney(purchaseMoney);
         LottoList = new ArrayList<>();
+        purchaseAmount = purchaseMoney / UNIT;
+    }
+
+    public void validatePurchaseMoney(int purchaseMoney) {
+        validate_Negative(purchaseMoney);
+        validate_NotUnit(purchaseMoney);
     }
 
     public void validate_Negative(int purchaseMoney) {
