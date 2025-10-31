@@ -7,12 +7,12 @@ import java.util.List;
 
 public class PurchaseLotto {
     private static final int UNIT = 1000;
-    private final List<Lotto> LottoList;
-    private int purchaseAmount;
+    private final List<Lotto> lottoList;
+    private final int purchaseAmount;
 
-    PurchaseLotto(int purchaseMoney) {
+    public PurchaseLotto(int purchaseMoney) {
         validatePurchaseMoney(purchaseMoney);
-        LottoList = new ArrayList<>();
+        lottoList = new ArrayList<>();
         purchaseAmount = purchaseMoney / UNIT;
     }
 
@@ -35,5 +35,9 @@ public class PurchaseLotto {
 
     public int getPurchaseAmount() {
         return purchaseAmount;
+    }
+
+    public List<Lotto> getLottoList() {
+        return lottoList;
     }
 }
