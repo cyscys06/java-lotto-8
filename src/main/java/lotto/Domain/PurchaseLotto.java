@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseLotto {
-    private static final int UNIT = 1000;
     private final List<Lotto> lottoList;
     private final int purchaseAmount;
 
     public PurchaseLotto(int purchaseMoney) {
         validatePurchaseMoney(purchaseMoney);
         lottoList = new ArrayList<>();
-        purchaseAmount = purchaseMoney / UNIT;
+        purchaseAmount = purchaseMoney / LottoInfo.UNIT.getInfo();
     }
 
     public void validatePurchaseMoney(int purchaseMoney) {
@@ -28,7 +27,7 @@ public class PurchaseLotto {
     }
 
     public void validate_NotUnit(int purchaseMoney) {
-        if (purchaseMoney % UNIT != 0) {
+        if (purchaseMoney % LottoInfo.UNIT.getInfo() != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOTUNIT.getErrorMessage());
         }
     }
