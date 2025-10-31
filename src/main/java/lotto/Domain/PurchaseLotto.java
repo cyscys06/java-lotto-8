@@ -32,4 +32,8 @@ public class PurchaseLotto {
             throw new IllegalArgumentException(ErrorMessage.NOTUNIT.getErrorMessage());
         }
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }
