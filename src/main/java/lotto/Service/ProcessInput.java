@@ -17,4 +17,8 @@ public class ProcessInput {
         }
         return numbers;
     }
+
+    public int StringtoInteger(String string) {
+        return Integer.parseInt(string);
+    }
 }
