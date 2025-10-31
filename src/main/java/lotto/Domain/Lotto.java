@@ -11,22 +11,27 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateLottoNumberCount(numbers);
+        validateLotto(numbers);
         this.numbers = numbers;
     }
 
-    private void validateLottoNumberCount(List<Integer> numbers) {
+    private void validateLotto_NumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTONUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NOTPROPERCOUNT.getErrorMessage());
         }
     }
 
-    private void validateLottoNumberRange(List<Integer> numbers) {
+    private void validateLotto_NumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number > LOTTONUMBER_MAX || number < LOTTONUMBER_MIN) {
                 throw new IllegalArgumentException(ErrorMessage.NOTINRANGE.getErrorMessage());
             }
         }
+    }
+
+    public void validateLotto(List<Integer> numbers) {
+        validateLotto_NumberRange(numbers);
+        validateLotto_NumberCount(numbers);
     }
 
     public List<Integer> getNumbers() {
