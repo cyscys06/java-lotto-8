@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Domain.Lotto;
 import lotto.Domain.LottoInfo;
+import lotto.Domain.PurchaseLotto;
 
 public class PurchaseLottoService {
     public List<Integer> makeLotto() {
@@ -17,5 +19,13 @@ public class PurchaseLottoService {
         Collections.sort(sortedNumbers);
 
         return sortedNumbers;
+    }
+
+    public List<Lotto> makeLottoList(int purchaseCount) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0 ; i < purchaseCount; i++) {
+            lottoList.add(new Lotto(makeLotto()));
+        }
+        return lottoList;
     }
 }

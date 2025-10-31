@@ -1,8 +1,8 @@
 package lotto.Domain;
 
+import lotto.Service.PurchaseLottoService;
 import lotto.View.ErrorMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseLotto {
@@ -11,8 +11,8 @@ public class PurchaseLotto {
 
     public PurchaseLotto(int purchaseMoney) {
         validatePurchaseMoney(purchaseMoney);
-        lottoList = new ArrayList<>();
         purchaseAmount = purchaseMoney / LottoInfo.UNIT.getInfo();
+        lottoList = new PurchaseLottoService().makeLottoList(purchaseAmount);
     }
 
     public void validatePurchaseMoney(int purchaseMoney) {
