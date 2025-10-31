@@ -22,4 +22,8 @@ public class WinningNumbers {
             throw new IllegalArgumentException(ErrorMessage.NOTUNIQUE.getErrorMessage());
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
+    }
 }
