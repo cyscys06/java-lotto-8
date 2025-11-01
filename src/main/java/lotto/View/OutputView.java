@@ -25,6 +25,11 @@ public class OutputView {
         }
     }
 
+    public void requestInputAgain(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        System.out.println(ErrorMessage.REQUESTAGAIN.getErrorMessage());
+    }
+
     public void showCorrectResult(HashMap<WinningNumbers, Integer> correctLottoList) {
         System.out.println(Message.STATISTICS.getMessage());
         System.out.println(Message.HR.getMessage());
