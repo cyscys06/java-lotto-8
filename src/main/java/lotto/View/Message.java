@@ -12,6 +12,7 @@ public enum Message {
     THIRD_PLACE("5개 일치 (1,500,000원)"),
     FOURTH_PLACE("4개 일치 (50,000원)"),
     FIFTH_PLACE("3개 일치 (5,000원)"),
+    COUNT("개"),
     YIELD("총 수익률은 "),
     PERCENT("%입니다."),
     HYPHEN(" - "),
