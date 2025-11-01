@@ -53,5 +53,31 @@ public class ValidatorTest {
         }
     }
 
+    @Nested
+    @DisplayName("구매 금액 테스트")
+    class 구매_금액_테스트 {
+        @Test
+        void 구매_금액이_음수인지_테스트() {
+            int purchaseMoney = -1;
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new PurchaseLotto(purchaseMoney)
+            ).withMessageContaining(ErrorMessage.NEGATIVE.getErrorMessage());
+        }
 
+        @Test
+        void 구매_금액이_1천원_단위인지_테스트() {
+            int purchaseMoney = 1;
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new PurchaseLotto(purchaseMoney)
+            ).withMessageContaining(ErrorMessage.NOTUNIT.getErrorMessage());
+        }
+
+        @Test
+        void 구매_금액이_정상값인지_테스트() {
+            int purchaseMoney = 14000;
+            assertThatCode(
+                    () -> new PurchaseLotto(purchaseMoney)
+            ).doesNotThrowAnyException();
+        }
+    }
 }
