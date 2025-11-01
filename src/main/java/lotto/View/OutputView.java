@@ -57,7 +57,7 @@ public class OutputView {
     }
 
     public void showYield(TotalPrize totalPrize) {
-        double result = (double) Math.round(totalPrize.getYield());
+        double result = (double) Math.round(totalPrize.getYield() * 100) / 100;
         System.out.println(Message.YIELD.getMessage()
                 + result + Message.PERCENT.getMessage());
     }

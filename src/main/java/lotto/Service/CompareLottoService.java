@@ -8,7 +8,7 @@ import lotto.Domain.WinningPrize;
 import java.util.HashMap;
 
 public class CompareLottoService {
-    private HashMap<WinningPrize, Integer> correctLottoList;
+    private final HashMap<WinningPrize, Integer> correctLottoList;
 
     public CompareLottoService() {
         correctLottoList = new HashMap<>();
@@ -37,9 +37,8 @@ public class CompareLottoService {
             PurchaseLotto purchaseLotto, WinningNumbers winningNumbers) {
         int totalPrize = 0;
         for (Lotto lotto : purchaseLotto.getLottoList()) {
-            WinningPrize prize = compareLotto(lotto ,winningNumbers);
+            WinningPrize prize = compareLotto(lotto, winningNumbers);
             totalPrize += prize.getPrize();
-            correctLottoList.put(prize, 0);
             if (prize != WinningPrize.NONE) {
                 correctLottoList.put(prize, correctLottoList.get(prize) + 1);
             }

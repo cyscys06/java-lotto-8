@@ -4,37 +4,34 @@ import lotto.Domain.*;
 import lotto.Service.CalculateYield;
 import lotto.Service.CompareLottoService;
 import lotto.Service.ProcessInput;
-import lotto.Service.PurchaseLottoService;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
 import java.util.List;
 
 public class ProgramController {
-    private OutputView outputView;
-    private InputView inputView;
-    private ProcessInput processInput;
-    private PurchaseLottoService purchaseLottoService;
-    private CompareLottoService compareLottoService;
-    private CalculateYield calculateYield;
+    private final OutputView outputView;
+    private final InputView inputView;
+    private final ProcessInput processInput;
+    private final CompareLottoService compareLottoService;
+    private final CalculateYield calculateYield;
 
     public ProgramController() {
         outputView = new OutputView();
         inputView = new InputView();
         processInput = new ProcessInput();
-        purchaseLottoService = new PurchaseLottoService();
         compareLottoService = new CompareLottoService();
         calculateYield = new CalculateYield();
     }
 
     public void run() {
-        PurchaseLotto purchaseLotto = PurchaseLotto();
+        PurchaseLotto purchaseLotto = purchaseLotto();
         WinningNumbers winningNumbers = makeWinnningNumbers();
         TotalPrize totalPrize = compareLottoListProcess(purchaseLotto, winningNumbers);
         showResult(compareLottoService, totalPrize);
     }
 
-    private PurchaseLotto PurchaseLotto() {
+    private PurchaseLotto purchaseLotto() {
         while (true) {
             try {
                 outputView.requestPurchaseLotto();
@@ -73,6 +70,7 @@ public class ProgramController {
             try {
                 outputView.requestBonusNumber();
                 String bonusNumberInput = inputView.getInput();
+                inputView.validateInputisNotNumber(bonusNumberInput);
 
                 return  processInput.StringtoInteger(bonusNumberInput);
             } catch (IllegalArgumentException e) {
@@ -98,7 +96,7 @@ public class ProgramController {
             PurchaseLotto lottoList, WinningNumbers winningNumbers) {
         int totalPrize = compareLottoService.compareLottoList(lottoList, winningNumbers);
 
-        return calculateYield.calculateYield(lottoList.getPurchaseMoney(), totalPrize);
+        return calculateYield.calculateYield(totalPrize, lottoList.getPurchaseMoney());
     }
 
     private void showResult(CompareLottoService correctLottoList, TotalPrize totalPrize) {

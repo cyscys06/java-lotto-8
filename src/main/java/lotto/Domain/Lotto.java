@@ -2,6 +2,7 @@ package lotto.Domain;
 
 import lotto.View.ErrorMessage;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -31,9 +32,19 @@ public class Lotto {
         }
     }
 
+    private void validate_Unique(List<Integer> numbers) {
+        HashSet<Integer> validateUnique = new HashSet<>(numbers);
+        if (validateUnique.size() != LottoInfo.LOTTONUMBER_COUNT.getInfo()) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                            + ErrorMessage.NOTUNIQUE.getErrorMessage());
+        }
+    }
+
     public void validateLotto(List<Integer> numbers) {
         validateLotto_NumberRange(numbers);
         validateLotto_NumberCount(numbers);
+        validate_Unique(numbers);
     }
 
     public List<Integer> getNumbers() {
