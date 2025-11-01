@@ -1,10 +1,6 @@
 package lotto.Controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.Domain.Lotto;
-import lotto.Domain.PurchaseLotto;
-import lotto.Domain.TotalPrize;
-import lotto.Domain.WinningNumbers;
+import lotto.Domain.*;
 import lotto.Service.CalculateYield;
 import lotto.Service.CompareLottoService;
 import lotto.Service.ProcessInput;
@@ -12,7 +8,6 @@ import lotto.Service.PurchaseLottoService;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class ProgramController {
@@ -30,6 +25,13 @@ public class ProgramController {
         purchaseLottoService = new PurchaseLottoService();
         compareLottoService = new CompareLottoService();
         calculateYield = new CalculateYield();
+    }
+
+    public void run() {
+        PurchaseLotto purchaseLotto = PurchaseLotto();
+        WinningNumbers winningNumbers = makeWinnningNumbers();
+        TotalPrize totalPrize = compareLottoListProcess(purchaseLotto, winningNumbers);
+        showResult(compareLottoService, totalPrize);
     }
 
     private PurchaseLotto PurchaseLotto() {
@@ -89,7 +91,7 @@ public class ProgramController {
         }
     }
 
-    private TotalPrize compareLottoList(
+    private TotalPrize compareLottoListProcess(
             PurchaseLotto lottoList, WinningNumbers winningNumbers) {
         int totalPrize = compareLottoService.compareLottoList(lottoList, winningNumbers);
 

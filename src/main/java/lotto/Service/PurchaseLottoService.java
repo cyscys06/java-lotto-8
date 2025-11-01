@@ -6,7 +6,6 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoInfo;
-import lotto.Domain.PurchaseLotto;
 
 public class PurchaseLottoService {
     public List<Integer> makeLotto() {
