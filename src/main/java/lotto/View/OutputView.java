@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println(ErrorMessage.REQUESTAGAIN.getErrorMessage());
     }
 
-    public void showCorrectResult(HashMap<WinningNumbers, Integer> correctLottoList) {
+    public void showCorrectResult(HashMap<WinningPrize, Integer> correctLottoList) {
         System.out.println(Message.STATISTICS.getMessage());
         System.out.println(Message.HR.getMessage());
 
