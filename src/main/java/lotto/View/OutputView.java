@@ -1,9 +1,6 @@
 package lotto.View;
 
-import lotto.Domain.Lotto;
-import lotto.Domain.PurchaseLotto;
-import lotto.Domain.WinningNumbers;
-import lotto.Domain.WinningPrize;
+import lotto.Domain.*;
 
 import java.util.HashMap;
 
@@ -52,5 +49,11 @@ public class OutputView {
                 + Message.HYPHEN.getMessage()
                 + correctLottoList.get(WinningPrize.FIRST)
                 + Message.COUNT.getMessage());
+    }
+
+    public void showYield(TotalPrize totalPrize) {
+        double result = (double) Math.round(totalPrize.getYield());
+        System.out.println(Message.YIELD.getMessage()
+                + result + Message.PERCENT.getMessage());
     }
 }
