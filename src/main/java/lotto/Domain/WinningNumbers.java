@@ -11,8 +11,8 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers, int number) {
         validateLotto_NumberRange(number);
-        validate_Unique(numbers, number);
         winningNumbers = new Lotto(numbers);
+        validate_Unique(numbers, number);
         bonusNumber = number;
     }
 

@@ -23,7 +23,7 @@ public class PurchaseLotto {
     }
 
     public void validate_Negative(int purchaseMoney) {
-        if (purchaseMoney < 0) {
+        if (purchaseMoney <= 0) {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR.getErrorMessage()
                     + ErrorMessage.NEGATIVE.getErrorMessage());
