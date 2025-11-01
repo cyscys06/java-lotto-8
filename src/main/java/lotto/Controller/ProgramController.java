@@ -39,6 +39,7 @@ public class ProgramController {
             try {
                 outputView.requestPurchaseLotto();
                 String input = inputView.getInput();
+                inputView.validateInputisNotNumber(input);
 
                 int purchaseMoney = processInput.StringtoInteger(input);
                 PurchaseLotto purchaseLotto = new PurchaseLotto(purchaseMoney);
@@ -57,8 +58,10 @@ public class ProgramController {
                 outputView.requestWinningNumbers();
                 String winningnumbersInput = inputView.getInput();
 
-                return processInput.StringtoInteger(
-                        processInput.splitString(winningnumbersInput));
+                String[] splitInput = processInput.splitString(winningnumbersInput);
+                inputView.validatesplitInputisNotNumber(splitInput);
+
+                return processInput.StringtoInteger(splitInput);
             } catch (IllegalArgumentException e) {
                 outputView.requestInputAgain(e);
             }
