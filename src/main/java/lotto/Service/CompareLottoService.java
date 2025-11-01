@@ -43,4 +43,8 @@ public class CompareLottoService {
             }
         }
     }
+
+    public HashMap<WinningPrize, Integer> getCorrectLottoList() {
+        return correctLottoList;
+    }
 }
