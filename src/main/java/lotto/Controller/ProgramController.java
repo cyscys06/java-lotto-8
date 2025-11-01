@@ -71,12 +71,22 @@ public class ProgramController {
         }
     }
 
+    private WinningNumbers makeWinnningNumbers () {
+        while (true) {
+            try {
+                List<Integer> numbers = saveWinningNumbers();
+                int number = saveBonusNumber();
+
+                return new WinningNumbers(numbers, number);
+            } catch (IllegalArgumentException e) {
+                outputView.requestInputAgain(e);
+            }
+        }
+    }
+
     private int compareLottoList(PurchaseLotto lottoList) {
         while (true) {
             try {
-
-                WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
-
 
             }
             catch (IllegalArgumentException e) {

@@ -9,7 +9,7 @@ public class WinningNumbers {
     private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    WinningNumbers(List<Integer> numbers, int number) {
+    public WinningNumbers(List<Integer> numbers, int number) {
         validate_Unique(numbers, number);
         winningNumbers = new Lotto(numbers);
         bonusNumber = number;
