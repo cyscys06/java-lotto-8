@@ -4,7 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String getInput() {
-        return Console.readLine();
+        String input = Console.readLine();
+        validateInputEmpty(input);
+        validateInputisNotNumber(input);
+        return input;
     }
 
     public void validateInputEmpty(String input) {
