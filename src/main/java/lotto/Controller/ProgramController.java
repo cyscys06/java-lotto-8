@@ -58,7 +58,10 @@ public class ProgramController {
                 String[] splitInput = processInput.splitString(winningnumbersInput);
                 inputView.validatesplitInputisNotNumber(splitInput);
 
-                return processInput.StringtoInteger(splitInput);
+                List<Integer> numbers = processInput.StringtoInteger(splitInput);
+                new Lotto(numbers);
+
+                return numbers;
             } catch (IllegalArgumentException e) {
                 outputView.requestInputAgain(e);
             }
@@ -79,12 +82,12 @@ public class ProgramController {
         }
     }
 
-    private WinningNumbers makeWinnningNumbers () {
+    private WinningNumbers makeWinnningNumbers() {
+        List<Integer> numbers = saveWinningNumbers();
+
         while (true) {
             try {
-                List<Integer> numbers = saveWinningNumbers();
                 int number = saveBonusNumber();
-
                 return new WinningNumbers(numbers, number);
             } catch (IllegalArgumentException e) {
                 outputView.requestInputAgain(e);
