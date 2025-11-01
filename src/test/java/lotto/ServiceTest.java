@@ -1,8 +1,7 @@
 package lotto;
 
-import lotto.Domain.Lotto;
-import lotto.Domain.PurchaseLotto;
-import lotto.Domain.WinningNumbers;
+import lotto.Domain.*;
+import lotto.Service.CompareLottoService;
 import lotto.Service.ProcessInput;
 
 import static org.assertj.core.api.Assertions.*;
@@ -21,11 +20,13 @@ import java.util.List;
 public class ServiceTest {
     private ProcessInput processInput;
     private PurchaseLottoService purchaseLottoService;
+    private CompareLottoService compareLottoService;
 
     @BeforeEach
     void setUp() {
         processInput = new ProcessInput();
         purchaseLottoService = new PurchaseLottoService();
+        compareLottoService = new CompareLottoService();
     }
 
     @Nested
@@ -79,6 +80,54 @@ public class ServiceTest {
         }
     }
 
+    @Nested
+    @DisplayName("당첨 확인 테스트")
+    class 당첨_확인_테스트 {
+        @Test
+        void 로또_당첨_테스트() {
+            Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+            WinningNumbers winningLotto =
+                    new WinningNumbers(Arrays.asList(1, 2, 3, 7, 8, 9), 22);
 
+            WinningPrize winningPrize = compareLottoService.compareLotto(lotto, winningLotto);
+
+            assertThat(winningPrize.getPrize()).isEqualTo(5000);
+        }
+
+        @Test
+        void 보너스번호_당첨_테스트() {
+            Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+            WinningNumbers winningLotto =
+                    new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 7), 6);
+
+            WinningPrize winningPrize = compareLottoService.compareLotto(lotto, winningLotto);
+
+            assertThat(winningPrize.getPrize()).isEqualTo(30000000);
+        }
+
+        @Test
+        void 로또_리스트_당첨_테스트() {
+            int purchaseMoney = 8000;
+            WinningNumbers winningNumbers = new WinningNumbers(
+                    Arrays.asList(8, 21, 1, 41, 42, 43), 23);
+            assertRandomUniqueNumbersInRangeTest(
+                    () -> {
+                        PurchaseLotto purchaseLotto
+                                = new PurchaseLotto(purchaseMoney);
+                        int totalPrize = compareLottoService.
+                                compareLottoList(purchaseLotto, winningNumbers);
+                        assertThat(totalPrize).isEqualTo(30050000);
+                    },
+                    List.of(8, 21, 23, 41, 42, 43), // 3천만원당첨
+                    List.of(3, 5, 11, 16, 32, 38),
+                    List.of(7, 11, 16, 35, 36, 44),
+                    List.of(1, 8, 11, 31, 41, 42), // 5만원당첨
+                    List.of(13, 14, 16, 38, 42, 45),
+                    List.of(7, 11, 30, 40, 42, 43),
+                    List.of(2, 13, 22, 32, 38, 45),
+                    List.of(1, 3, 5, 14, 22, 45)
+            );
+        }
+    }
 
 }
