@@ -8,6 +8,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -80,4 +85,34 @@ public class ValidatorTest {
             ).doesNotThrowAnyException();
         }
     }
+
+    @Nested
+    @DisplayName("당첨번호 테스트")
+    class 당첨번호_테스트 {
+        @Test
+        void 당첨번호_범위_테스트() {
+            List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 77, 87));
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new Lotto(numbers)
+            ).withMessageContaining(ErrorMessage.NOTINRANGE.getErrorMessage());
+        }
+
+        @Test
+        void 당첨번호_개수_테스트() {
+            List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 17, 37));
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new Lotto(numbers)
+            ).withMessageContaining(ErrorMessage.NOTPROPERCOUNT.getErrorMessage());
+        }
+
+        @Test
+        void 당첨번호_중복_테스트() {
+            List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 7, 7, 7, 7));
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new Lotto(numbers)
+            ).withMessageContaining(ErrorMessage.NOTUNIQUE.getErrorMessage());
+        }
+    }
+
+
 }
