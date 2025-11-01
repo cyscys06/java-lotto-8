@@ -84,14 +84,8 @@ public class ProgramController {
         }
     }
 
-    private int compareLottoList(PurchaseLotto lottoList) {
-        while (true) {
-            try {
-
-            }
-            catch (IllegalArgumentException e) {
-                outputView.requestInputAgain(e);
-            }
-        }
+    private int compareLottoList(
+            PurchaseLotto lottoList, WinningNumbers winningNumbers) {
+        return compareLottoService.compareLottoList(lottoList, winningNumbers);
     }
 }
