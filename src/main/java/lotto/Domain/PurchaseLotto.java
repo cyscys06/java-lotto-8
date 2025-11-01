@@ -22,13 +22,17 @@ public class PurchaseLotto {
 
     public void validate_Negative(int purchaseMoney) {
         if (purchaseMoney < 0) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                    + ErrorMessage.NEGATIVE.getErrorMessage());
         }
     }
 
     public void validate_NotUnit(int purchaseMoney) {
         if (purchaseMoney % LottoInfo.UNIT.getInfo() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOTUNIT.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                    + ErrorMessage.NOTUNIT.getErrorMessage());
         }
     }
 

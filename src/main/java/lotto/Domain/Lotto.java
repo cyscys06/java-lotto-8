@@ -14,7 +14,9 @@ public class Lotto {
 
     private void validateLotto_NumberCount(List<Integer> numbers) {
         if (numbers.size() != LottoInfo.LOTTONUMBER_COUNT.getInfo()) {
-            throw new IllegalArgumentException(ErrorMessage.NOTPROPERCOUNT.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                    + ErrorMessage.NOTPROPERCOUNT.getErrorMessage());
         }
     }
 
@@ -22,7 +24,9 @@ public class Lotto {
         for (int number : numbers) {
             if (number > LottoInfo.LOTTONUMBER_MAX.getInfo() ||
                     number < LottoInfo.LOTTONUMBER_MIN.getInfo()) {
-                throw new IllegalArgumentException(ErrorMessage.NOTINRANGE.getErrorMessage());
+                throw new IllegalArgumentException(
+                        ErrorMessage.ERROR.getErrorMessage()
+                        + ErrorMessage.NOTINRANGE.getErrorMessage());
             }
         }
     }

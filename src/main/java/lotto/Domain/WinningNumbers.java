@@ -19,7 +19,9 @@ public class WinningNumbers {
         HashSet<Integer> validateUnique = new HashSet<>(numbers);
         validateUnique.add(number);
         if (validateUnique.size() != LottoInfo.LOTTONUMBER_COUNT.getInfo() + 1) {
-            throw new IllegalArgumentException(ErrorMessage.NOTUNIQUE.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                    + ErrorMessage.NOTUNIQUE.getErrorMessage());
         }
     }
 

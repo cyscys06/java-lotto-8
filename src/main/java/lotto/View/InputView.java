@@ -9,7 +9,9 @@ public class InputView {
 
     public void validateInputEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTYINPUT.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                    + ErrorMessage.EMPTYINPUT.getErrorMessage());
         }
     }
 
@@ -17,7 +19,9 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOTNUMBER.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                    + ErrorMessage.NOTNUMBER.getErrorMessage());
         }
     }
 }
