@@ -8,7 +8,8 @@ public enum ErrorMessage {
     NOTUNIT("구매 금액은 1천원 단위로 입력해야 합니다."),
     NOTUNIQUE("중복 번호를 입력할 수 없습니다."),
     NOTINRANGE("1~45 사이의 숫자만 입력해야 합니다."),
-    NOTPROPERCOUNT("로또 번호는 6개여야 합니다.");
+    NOTPROPERCOUNT("로또 번호는 6개여야 합니다."),
+    REQUESTAGAIN("다시 입력해 주십시오.");
 
     private final String errorMessage;
 
