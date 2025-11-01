@@ -49,8 +49,22 @@ public class ProgramController {
             try {
                 outputView.requestWinningNumbers();
                 String winningnumbersInput = inputView.getInput();
+
                 return processInput.StringtoInteger(
                         processInput.splitString(winningnumbersInput));
+            } catch (IllegalArgumentException e) {
+                outputView.requestInputAgain(e);
+            }
+        }
+    }
+
+    private int saveBonusNumber() {
+        while (true) {
+            try {
+                outputView.requestBonusNumber();
+                String bonusNumberInput = inputView.getInput();
+
+                return  processInput.StringtoInteger(bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 outputView.requestInputAgain(e);
             }
@@ -60,14 +74,6 @@ public class ProgramController {
     private int compareLottoList(PurchaseLotto lottoList) {
         while (true) {
             try {
-                outputView.requestWinningNumbers();
-                String winningnumbersInput = inputView.getInput();
-                List<Integer> numbers = processInput.StringtoInteger(
-                        processInput.splitString(winningnumbersInput));
-
-                outputView.requestBonusNumber();
-                String bonusNumberInput = inputView.getInput();
-                int bonusNumber = processInput.StringtoInteger(bonusNumberInput);
 
                 WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
 
