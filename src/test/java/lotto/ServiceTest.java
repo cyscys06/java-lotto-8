@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.Domain.*;
+import lotto.Service.CalculateYield;
 import lotto.Service.CompareLottoService;
 import lotto.Service.ProcessInput;
 
@@ -21,12 +22,14 @@ public class ServiceTest {
     private ProcessInput processInput;
     private PurchaseLottoService purchaseLottoService;
     private CompareLottoService compareLottoService;
+    private CalculateYield calculateYield;
 
     @BeforeEach
     void setUp() {
         processInput = new ProcessInput();
         purchaseLottoService = new PurchaseLottoService();
         compareLottoService = new CompareLottoService();
+        calculateYield = new CalculateYield();
     }
 
     @Nested
@@ -130,4 +133,11 @@ public class ServiceTest {
         }
     }
 
+    @Test
+    void 수익률_계산_테스트() {
+        int totalPrize = 5000, purchaseMoney = 8000;
+        TotalPrize yield = calculateYield.calculateYield(totalPrize, purchaseMoney);
+
+        assertThat(yield.getYield()).isEqualTo(62.5);
+    }
 }
