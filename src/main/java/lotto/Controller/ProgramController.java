@@ -3,7 +3,9 @@ package lotto.Controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Domain.Lotto;
 import lotto.Domain.PurchaseLotto;
+import lotto.Domain.TotalPrize;
 import lotto.Domain.WinningNumbers;
+import lotto.Service.CalculateYield;
 import lotto.Service.CompareLottoService;
 import lotto.Service.ProcessInput;
 import lotto.Service.PurchaseLottoService;
@@ -18,6 +20,7 @@ public class ProgramController {
     private ProcessInput processInput;
     private PurchaseLottoService purchaseLottoService;
     private CompareLottoService compareLottoService;
+    private CalculateYield calculateYield;
 
     public ProgramController() {
         outputView = new OutputView();
@@ -25,6 +28,7 @@ public class ProgramController {
         processInput = new ProcessInput();
         purchaseLottoService = new PurchaseLottoService();
         compareLottoService = new CompareLottoService();
+        calculateYield = new CalculateYield();
     }
 
     private PurchaseLotto PurchaseLotto() {
@@ -84,8 +88,10 @@ public class ProgramController {
         }
     }
 
-    private int compareLottoList(
+    private TotalPrize compareLottoList(
             PurchaseLotto lottoList, WinningNumbers winningNumbers) {
-        return compareLottoService.compareLottoList(lottoList, winningNumbers);
+        int totalPrize = compareLottoService.compareLottoList(lottoList, winningNumbers);
+
+        return calculateYield.calculateYield(lottoList.getPurchaseMoney(), totalPrize);
     }
 }
