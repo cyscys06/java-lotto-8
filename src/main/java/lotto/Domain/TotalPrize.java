@@ -1,10 +1,12 @@
 package lotto.Domain;
 
 public class TotalPrize {
-    private final double yield;
+    private double yield;
 
     public TotalPrize(int totalPrize, int purchaseMoney) {
-        yield = (double)totalPrize / purchaseMoney;
+        if (totalPrize != 0) {
+            yield = (double)totalPrize / purchaseMoney;
+        }
     }
 
     public double getYield() {
