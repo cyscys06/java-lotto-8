@@ -10,6 +10,7 @@ public class WinningNumbers {
     private final int bonusNumber;
 
     public WinningNumbers(List<Integer> numbers, int number) {
+        validateLotto_NumberRange(number);
         validate_Unique(numbers, number);
         winningNumbers = new Lotto(numbers);
         bonusNumber = number;
@@ -22,6 +23,15 @@ public class WinningNumbers {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR.getErrorMessage()
                     + ErrorMessage.NOTUNIQUE.getErrorMessage());
+        }
+    }
+
+    private void validateLotto_NumberRange(int number) {
+        if (number > LottoInfo.LOTTONUMBER_MAX.getInfo() ||
+                number < LottoInfo.LOTTONUMBER_MIN.getInfo()) {
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR.getErrorMessage()
+                            + ErrorMessage.NOTINRANGE.getErrorMessage());
         }
     }
 
