@@ -8,9 +8,11 @@ import java.util.List;
 public class PurchaseLotto {
     private final List<Lotto> lottoList;
     private final int purchaseAmount;
+    private int purchaseMoney;
 
     public PurchaseLotto(int purchaseMoney) {
         validatePurchaseMoney(purchaseMoney);
+        this.purchaseMoney = purchaseMoney;
         purchaseAmount = purchaseMoney / LottoInfo.UNIT.getInfo();
         lottoList = new PurchaseLottoService().makeLottoList(purchaseAmount);
     }
@@ -42,5 +44,9 @@ public class PurchaseLotto {
 
     public List<Lotto> getLottoList() {
         return lottoList;
+    }
+
+    public int getPurchaseMoney() {
+        return purchaseMoney;
     }
 }
