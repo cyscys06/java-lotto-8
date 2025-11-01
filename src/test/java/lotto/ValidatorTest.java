@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.Domain.Lotto;
 import lotto.Domain.PurchaseLotto;
+import lotto.Domain.WinningNumbers;
 import lotto.View.ErrorMessage;
 import lotto.View.InputView;
 import org.junit.jupiter.api.BeforeEach;
@@ -110,6 +111,28 @@ public class ValidatorTest {
             List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 7, 7, 7, 7));
             assertThatIllegalArgumentException().isThrownBy(
                     () -> new Lotto(numbers)
+            ).withMessageContaining(ErrorMessage.NOTUNIQUE.getErrorMessage());
+        }
+    }
+
+    @Nested
+    @DisplayName("보너스번호 테스트")
+    class 보너스번호_테스트 {
+        @Test
+        void 보너스번호_범위_테스트() {
+            List<Integer> numbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+            int bonusNumber = 77;
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new WinningNumbers(numbers, bonusNumber)
+            ).withMessageContaining(ErrorMessage.NOTINRANGE.getErrorMessage());
+        }
+
+        @Test
+        void 보너스번호_중복_테스트() {
+            List<Integer> numbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+            int bonusNumber = 6;
+            assertThatIllegalArgumentException().isThrownBy(
+                    () -> new WinningNumbers(numbers, bonusNumber)
             ).withMessageContaining(ErrorMessage.NOTUNIQUE.getErrorMessage());
         }
     }
