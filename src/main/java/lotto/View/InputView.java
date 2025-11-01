@@ -6,7 +6,6 @@ public class InputView {
     public String getInput() {
         String input = Console.readLine();
         validateInputEmpty(input);
-        validateInputisNotNumber(input);
         return input;
     }
 
@@ -25,6 +24,12 @@ public class InputView {
             throw new IllegalArgumentException(
                     ErrorMessage.ERROR.getErrorMessage()
                     + ErrorMessage.NOTNUMBER.getErrorMessage());
+        }
+    }
+
+    public void validatesplitInputisNotNumber(String[] splitInput) {
+        for (String string : splitInput) {
+            validateInputisNotNumber(string);
         }
     }
 }
