@@ -25,13 +25,13 @@ public class ProgramController {
     }
 
     public void run() {
-        PurchaseLotto purchaseLotto = purchaseLotto();
+        PurchaseLotto purchaseLotto = purchaseLottoProcess();
         WinningNumbers winningNumbers = makeWinnningNumbers();
         TotalPrize totalPrize = compareLottoListProcess(purchaseLotto, winningNumbers);
         showResult(compareLottoService, totalPrize);
     }
 
-    private PurchaseLotto purchaseLotto() {
+    private PurchaseLotto purchaseLottoProcess() {
         while (true) {
             try {
                 outputView.requestPurchaseLotto();
