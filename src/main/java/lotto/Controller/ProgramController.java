@@ -12,6 +12,7 @@ import lotto.Service.PurchaseLottoService;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ProgramController {
@@ -93,5 +94,10 @@ public class ProgramController {
         int totalPrize = compareLottoService.compareLottoList(lottoList, winningNumbers);
 
         return calculateYield.calculateYield(lottoList.getPurchaseMoney(), totalPrize);
+    }
+
+    private void showResult(CompareLottoService correctLottoList, TotalPrize totalPrize) {
+        outputView.showCorrectResult(correctLottoList.getCorrectLottoList());
+        outputView.showYield(totalPrize);
     }
 }
